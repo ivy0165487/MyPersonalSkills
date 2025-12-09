@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oleg Ticenko — Portfolio</title>
+
+<meta name="description" content="Oleg — Blender artist, coder, commissions, projects, investor." />
+
+<style>
+:root{
+  --bg:#f4f6f8;
+  --card:#ffffff;
+  --muted:#9aa0a6;
+  --accent:#9a5f64;
+  --radius:22px;
+}
+
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  min-height:100%;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;
+  background:linear-gradient(180deg,#c98a88,#7c4f51);
+}
+
+.page{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+
+.card{
+  max-width:1150px;
+  width:100%;
+  background:var(--bg);
+  border-radius:var(--radius);
+  display:flex;
+  overflow:hidden;
+  box-shadow:0 18px 40px rgba(0,0,0,.25);
+}
+
+/* LEFT */
+.left{
+  flex:1;
+  padding:56px;
+}
+
+h1{
+  margin:0 0 8px;
+  font-size:40px;
+}
+
+.subtitle{
+  color:var(--muted);
+  font-size:14px;
+  margin-bottom:28px;
+}
+
+.section{
+  margin-bottom:28px;
+}
+
+.section h2{
+  margin:0 0 8px;
+  font-size:18px;
+}
+
+.section p{
+  margin:0;
+  font-size:14px;
+  color:#333;
+  line-height:1.6;
+}
+
+.tagline{
+  padding:14px 18px;
+  background:white;
+  border-radius:14px;
+  font-size:14px;
+}
+
+/* CONTACT */
+.contact{
+  margin-top:22px;
+  font-size:14px;
+}
+
+.contact strong{color:#111}
+.contact a{
+  color:var(--accent);
+  text-decoration:none;
+}
+
+/* RIGHT */
+.right{
+  width:42%;
+  min-width:320px;
+  padding:20px;
+  position:relative;
+}
+
+.art-box{
+  height:100%;
+  border-radius:18px;
+  overflow:hidden;
+  background:#e7d8d9;
+}
+
+.art-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* overlay */
+.overlay{
+  position:absolute;
+  left:32px;
+  right:32px;
+  bottom:32px;
+  color:white;
+  text-shadow:0 6px 18px rgba(0,0,0,.45);
+}
+
+.overlay h3{
+  margin:0 0 6px;
+  font-size:20px;
+}
+
+.overlay p{
+  margin:0;
+  font-size:14px;
+}
+
+/* PROJECTS */
+.projects{
+  margin-top:28px;
+  padding:18px;
+  background:white;
+  border-radius:14px;
+  font-size:14px;
+  color:var(--muted);
+  text-align:center;
+}
+
+/* responsive */
+@media (max-width:900px){
+  .card{flex-direction:column}
+  .right{width:100%;height:260px}
+  .left{padding:36px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important}
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+  <div class="card">
+
+    <!-- LEFT -->
+    <div class="left">
+      <h1>Oleg</h1>
+      <div class="subtitle">Blender • Code • Projects • Investments</div>
+
+      <div class="section">
+        <h2>About me</h2>
+        <p>
+          I’m Oleg. I have strong Blender skills and can model anything I need.
+          I enjoy coding and building various projects, and I often earn through commissions.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>What I do</h2>
+        <div class="tagline">
+          • 3D modeling in Blender<br>
+          • Programming & technical projects<br>
+          • Commission-based work<br>
+          • Investing in companies and games
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Projects</h2>
+        <div class="projects">
+          Coming soon
+        </div>
+      </div>
+
+      <div class="contact">
+        Looking for an investor or collaboration?<br>
+        DM me on Discord: <strong>olegticenko</strong><br>
+        YouTube:
+        <a href="https://www.youtube.com/@olegticenko" target="_blank">
+          youtube.com/@olegticenko
+        </a>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right">
+      <div class="art-box">
+        <!-- Replace with your Blender render -->
+        <img
+          loading="lazy"
+          src="blender.png"
+          alt="Blender artwork by Oleg">
+      </div>
+      <div class="overlay">
+        <h3>Blender showcase</h3>
+        <p>Fast, clean, and optimized work</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
