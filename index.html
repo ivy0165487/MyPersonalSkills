@@ -1,225 +1,218 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
+<title>Oleg Portfolio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Oleg Ticenko — Portfolio</title>
-
-<meta name="description" content="Oleg — Blender artist, coder, commissions, projects, investor." />
 
 <style>
-:root{
-  --bg:#f4f6f8;
-  --card:#ffffff;
-  --muted:#9aa0a6;
-  --accent:#9a5f64;
-  --radius:22px;
-}
+  /* ===== Base ===== */
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #080808;
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding: 40px 10px;
+    overflow-x: hidden;
+    position: relative;
+  }
 
-*{box-sizing:border-box}
-html,body{
-  margin:0;
-  min-height:100%;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;
-  background:linear-gradient(180deg,#c98a88,#7c4f51);
-}
+  /* ===== Moving Light Streak Background ===== */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(120deg, transparent, #4cc2ff11, transparent);
+    animation: lightMove 8s linear infinite;
+    z-index: -1;
+  }
+  @keyframes lightMove {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
 
-.page{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:24px;
-}
+  /* ===== Container ===== */
+  .container {
+    width: 100%;
+    max-width: 900px;
+    backdrop-filter: blur(18px);
+    background: rgba(20, 20, 20, 0.55);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 22px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    opacity: 0;
+    transform: translateY(25px);
+    animation: fadeIn 1s ease forwards;
+  }
 
-.card{
-  max-width:1150px;
-  width:100%;
-  background:var(--bg);
-  border-radius:var(--radius);
-  display:flex;
-  overflow:hidden;
-  box-shadow:0 18px 40px rgba(0,0,0,.25);
-}
+  @keyframes fadeIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-/* LEFT */
-.left{
-  flex:1;
-  padding:56px;
-}
+  /* ===== Headings ===== */
+  h1 {
+    font-size: 40px;
+    text-align: center;
+    margin: 0;
+    animation: glowIn 1.2s ease;
+  }
+  @keyframes glowIn {
+    0% { opacity: 0; filter: blur(6px); }
+    100% { opacity: 1; filter: blur(0); }
+  }
 
-h1{
-  margin:0 0 8px;
-  font-size:40px;
-}
+  h2 {
+    margin-top: 40px;
+    margin-bottom: 12px;
+    border-left: 4px solid #4cc2ff;
+    padding-left: 10px;
+  }
 
-.subtitle{
-  color:var(--muted);
-  font-size:14px;
-  margin-bottom:28px;
-}
+  /* ===== Section animation ===== */
+  .section {
+    margin-bottom: 35px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.7s ease;
+  }
+  .section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-.section{
-  margin-bottom:28px;
-}
+  /* ===== Grids ===== */
+  .grid {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
 
-.section h2{
-  margin:0 0 8px;
-  font-size:18px;
-}
+  /* ===== Images ===== */
+  img {
+    width: 100%;
+    border-radius: 14px;
+    object-fit: cover;
+    background: #222;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
 
-.section p{
-  margin:0;
-  font-size:14px;
-  color:#333;
-  line-height:1.6;
-}
+  img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 18px #4cc2ff55;
+  }
 
-.tagline{
-  padding:14px 18px;
-  background:white;
-  border-radius:14px;
-  font-size:14px;
-}
+  /* ===== Card ===== */
+  .card {
+    padding: 20px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
 
-/* CONTACT */
-.contact{
-  margin-top:22px;
-  font-size:14px;
-}
+  .card:hover {
+    background: rgba(255,255,255,0.08);
+    transform: translateY(-3px);
+  }
 
-.contact strong{color:#111}
-.contact a{
-  color:var(--accent);
-  text-decoration:none;
-}
-
-/* RIGHT */
-.right{
-  width:42%;
-  min-width:320px;
-  padding:20px;
-  position:relative;
-}
-
-.art-box{
-  height:100%;
-  border-radius:18px;
-  overflow:hidden;
-  background:#e7d8d9;
-}
-
-.art-box img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-/* overlay */
-.overlay{
-  position:absolute;
-  left:32px;
-  right:32px;
-  bottom:32px;
-  color:white;
-  text-shadow:0 6px 18px rgba(0,0,0,.45);
-}
-
-.overlay h3{
-  margin:0 0 6px;
-  font-size:20px;
-}
-
-.overlay p{
-  margin:0;
-  font-size:14px;
-}
-
-/* PROJECTS */
-.projects{
-  margin-top:28px;
-  padding:18px;
-  background:white;
-  border-radius:14px;
-  font-size:14px;
-  color:var(--muted);
-  text-align:center;
-}
-
-/* responsive */
-@media (max-width:900px){
-  .card{flex-direction:column}
-  .right{width:100%;height:260px}
-  .left{padding:36px}
-}
-
-@media (prefers-reduced-motion:reduce){
-  *{transition:none!important}
-}
+  footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    color: #aaa;
+    font-size: 14px;
+  }
 </style>
+
 </head>
-
 <body>
-<div class="page">
-  <div class="card">
 
-    <!-- LEFT -->
-    <div class="left">
-      <h1>Oleg</h1>
-      <div class="subtitle">Blender • Code • Projects • Investments</div>
+<div class="container">
 
-      <div class="section">
-        <h2>About me</h2>
-        <p>
-          I’m Oleg. I have strong Blender skills and can model anything I need.
-          I enjoy coding and building various projects, and I often earn through commissions.
-        </p>
-      </div>
+  <h1>Oleg – 3D Artist & Developer</h1>
+  <p style="text-align:center;margin-top:-5px;">Blender • Coding • Commissions • Investing</p>
 
-      <div class="section">
-        <h2>What I do</h2>
-        <div class="tagline">
-          • 3D modeling in Blender<br>
-          • Programming & technical projects<br>
-          • Commission-based work<br>
-          • Investing in companies and games
-        </div>
-      </div>
+  <!-- ===== Sections ===== -->
 
-      <div class="section">
-        <h2>Projects</h2>
-        <div class="projects">
-          Coming soon
-        </div>
-      </div>
-
-      <div class="contact">
-        Looking for an investor or collaboration?<br>
-        DM me on Discord: <strong>olegticenko</strong><br>
-        YouTube:
-        <a href="https://www.youtube.com/@olegticenko" target="_blank">
-          youtube.com/@olegticenko
-        </a>
-      </div>
-    </div>
-
-    <!-- RIGHT -->
-    <div class="right">
-      <div class="art-box">
-        <!-- Replace with your Blender render -->
-        <img
-          loading="lazy"
-          src="blender.png"
-          alt="Blender artwork by Oleg">
-      </div>
-      <div class="overlay">
-        <h3>Blender showcase</h3>
-        <p>Fast, clean, and optimized work</p>
-      </div>
-    </div>
-
+  <div class="section">
+    <h2>About Me</h2>
+    <p>I’m Oleg, a Blender artist who can model anything — props, characters, buildings, assets, entire environments.  
+    I code, work on projects, earn from commissions, and upload work on YouTube.  
+    I also invest in games and upcoming ideas.  
+    <br><br>
+    If you need a commission or an investor: <b>Discord → olegticenko</b>.
+    </p>
   </div>
+
+  <div class="section">
+    <h2>Commission Info</h2>
+    <div class="card">
+      <p><b>• First commission: 4,000 Robux</b></p>
+      <p><b>• Same client returned: +2,000 Robux</b></p>
+      <p>I put in heavy effort into all work. You get quality, consistency, and good communication.</p>
+      <p><b>Minimum price → 1,000 Robux</b></p>
+      <p><b>No free work. No “start now, pay later”.</b></p>
+      <p>I can model literally anything the client requests.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Blender Work</h2>
+    <div class="grid">
+      <img src="assets/blender1.png" alt="Work 1">
+      <img src="assets/blender2.webp" alt="Work 2">
+      <img src="assets/blender3.webp" alt="Work 3">
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Client Ratings</h2>
+    <div class="grid">
+      <img src="assets/rating1.png" alt="Rating 1">
+      <img src="assets/rating2.png" alt="Rating 2">
+      <img src="assets/rating3.png" alt="Rating 3">
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Gallery</h2>
+    <div class="grid">
+      <img src="assets/render1.webp" alt="Gallery 1">
+      <img src="assets/render2.webp" alt="Gallery 2">
+      <img src="assets/render3.webp" alt="Gallery 3">
+      <img src="assets/render4.webp" alt="Gallery 4">
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Projects</h2>
+    <div class="card"><p>Coming Soon</p></div>
+  </div>
+
+  <div class="section">
+    <h2>YouTube</h2>
+    <div class="card">
+      <p>My Blender work, timelapses, and project videos:</p>
+      <a href="https://www.youtube.com/@olegticenko" style="color:#4cc2ff">youtube.com/@olegticenko</a>
+    </div>
+  </div>
+
+  <footer>© 2025 Oleg • Portfolio</footer>
 </div>
+
+<!-- ===== Scroll Animation Script ===== -->
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.section').forEach(sec => observer.observe(sec));
+</script>
+
 </body>
 </html>
